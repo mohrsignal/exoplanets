@@ -130,4 +130,20 @@ select_coords_catalogs <- function(df) {
            GL,
            HR,
            SAO)
-} 
+}
+
+#### Convert from Jupiter to Earth parameters ####
+
+# https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html
+
+convert_jupiter_earth <- function(df) {
+  
+  if ("MASS" %in% colnames(df)) {
+    df$MASS <- df$MASS*317.8
+  }
+  if ("R" %in% colnames(df)) {
+    df$R <- df$R*11.21
+  }
+  
+  return(df)
+}
